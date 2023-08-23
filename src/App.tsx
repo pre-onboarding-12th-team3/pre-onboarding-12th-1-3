@@ -1,7 +1,8 @@
+import { RootLayout } from '@/components/common/index';
 import './App.css';
 
-function App() {
-  return <></>;
-}
+const App = () => {
+  return <RootLayout />;
+};
 
 export default App;
