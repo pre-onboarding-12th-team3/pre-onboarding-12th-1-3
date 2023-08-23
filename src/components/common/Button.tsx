@@ -87,7 +87,7 @@ const StyledButton = styled.button<CustomProps>`
 
 const Button = (
   { size = 'default', color = 'primary', children, ...rest }: Props,
-  ref: Ref<HTMLButtonElement>
+  ref: Ref<HTMLButtonElement>,
 ) => {
   return (
     <StyledButton size={size} color={color} ref={ref} {...rest}>
