@@ -1,7 +1,7 @@
 import { ComponentPropsWithRef, Ref, forwardRef } from 'react';
 import styled from 'styled-components';
 
-interface Props extends ComponentPropsWithRef<'input'> {}
+type Props = ComponentPropsWithRef<'input'>;
 
 const StyledCheckbox = styled.input`
   width: 1.1rem;
