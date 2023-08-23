@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "craco": "^0.0.3",
+    "eslint-config-prettier": "^9.0.0",
     "react-app-alias": "^2.2.2"
   }
 }
