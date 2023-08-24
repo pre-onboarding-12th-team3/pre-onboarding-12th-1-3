@@ -1,5 +1,6 @@
+import styled from 'styled-components';
 import { Button, Checkbox, Label } from '@/components/common';
-import {useState} from 'react';
+import { useState } from 'react';
 
 interface Todo {
     id: number;
@@ -12,39 +13,49 @@ interface Props {
     item: Todo;
 }
 
-const Item = ({ item }: Props) => {
-    const {todo, isCompleted} = item;
+const Item = styled.li`
+    display: flex;
+    gap: 12px;
+`
+
+const ButtonBox = styled.div`
+    display: flex;
+`
+
+const TodoItem = ({ item }: Props) => {
+    const [isChecked, setIsChecked] = useState(item.isCompleted);
     const [isEditing, setIsEditing] = useState<boolean>(false);
     
     return (
-        <li>
+        <Item>
             <Label>
                 <Checkbox
-                    checked={isCompleted}
+                    checked={isChecked}
+                    onChange={() => setIsChecked(prev => !prev)}
                 />
-                <span>{todo}</span>
+                <span>{item.todo}</span>
             </Label>
             {isEditing ? (
-                <div>
+                <ButtonBox>
                     <Button data-testid='submit-button'>
                         제출
                     </Button>
                     <Button data-testid='cancel-button' onClick={() => {setIsEditing(false)}}>
                         취소
                     </Button>
-                </div>
+                </ButtonBox>
             ) : (
-                <div>
+                <ButtonBox>
                     <Button data-testid='modify-button' onClick={() => {setIsEditing(true)}}>
                         수정
                     </Button>
                     <Button data-testid='delete-button'>
                         삭제
                     </Button>
-                </div>
+                </ButtonBox>
             )}
-        </li>
+        </Item>
     );
 }
 
-export default Item;
+export default TodoItem;
