@@ -1,5 +1,6 @@
+import { todoService } from '@/apis';
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface ProtectedRouteProps {
   element: JSX.Element;
@@ -8,22 +9,45 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute = ({ element, path }: ProtectedRouteProps) => {
   const navigate = useNavigate();
-  const params = useParams();
 
-  const isLoggedIn = () => {
+  const isLoggedIn = async () => {
     const token = localStorage.getItem('token');
-    return !!token;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const res = await todoService.getTodos(token);
+      return res.status !== 401;
+    } catch (err) {
+      return false;
+    }
   };
 
   useEffect(() => {
-    if (path === 'signin' || path === 'signup') {
-      isLoggedIn() && navigate('/todo');
-    } else if (path === 'todo') {
-      !isLoggedIn() && navigate('/signin');
-    } else {
-      isLoggedIn() ? navigate('/todo') : navigate('/signin');
-    }
-  }, [params]);
+    const checkLoggedIn = async () => {
+      const isAuthenticated = await isLoggedIn();
+
+      if (path === 'signin' || path === 'signup') {
+        if (isAuthenticated) {
+          navigate('/todo');
+        }
+      } else if (path === 'todo') {
+        if (!isAuthenticated) {
+          navigate('/signin');
+        }
+      } else {
+        if (!isAuthenticated) {
+          navigate('/signin');
+        } else {
+          navigate('/todo');
+        }
+      }
+    };
+
+    checkLoggedIn();
+  }, []);
 
   return element;
 };
