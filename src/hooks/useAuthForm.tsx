@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDebounce } from '@/hooks';
+import { signInApi, signUpApi } from '@/apis/auth';
+import { isValidEmailInput, isValidPasswordInput } from '@/utils/auth/validate';
 // import { useNavigate } from 'react-router-dom';
 
 type FormInput = AuthPostRequest;
@@ -7,36 +9,6 @@ type FormInput = AuthPostRequest;
 export type AuthPostRequest = {
   email: string;
   password: string;
-};
-const MIN_PASSWORD_LENGTH = 8;
-
-export const isValidEmailInput = (email: string) => {
-  return email.includes('@');
-};
-export const isValidPasswordInput = (password: string) => {
-  return password.length >= MIN_PASSWORD_LENGTH;
-};
-
-// sign api
-import axios from 'axios';
-
-export const BASE_URL = 'https://www.pre-onboarding-selection-task.shop/';
-
-const axiosInstance = () => {
-  return axios.create({
-    baseURL: BASE_URL,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-};
-
-export const signUp = async ({ email, password }: AuthPostRequest) => {
-  return await axiosInstance().post('/auth/signup', { email, password });
-};
-
-export const signIn = async ({ email, password }: AuthPostRequest) => {
-  return await axiosInstance().post('/auth/signin', { email, password });
 };
 
 const useAuthForm = (type: string) => {
@@ -65,7 +37,7 @@ const useAuthForm = (type: string) => {
     setIsValidForm(false);
     if (type === 'signin') {
       try {
-        const res = await signIn(form);
+        const res = await signInApi(form);
         localStorage.setItem('access_token', res.data.access_token);
         // navigate('/todo');
       } catch (err: any | unknown) {
@@ -75,7 +47,7 @@ const useAuthForm = (type: string) => {
     }
     if (type === 'signup') {
       try {
-        await signUp(form);
+        await signUpApi(form);
         alert('회원가입에 성공했습니다.');
         // navigate('/signin');
       } catch (err: any | unknown) {
