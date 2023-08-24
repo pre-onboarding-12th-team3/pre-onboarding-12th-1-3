@@ -1,12 +1,5 @@
-import axiosInstance from './axiosInstance';
-
-interface AuthProps {
-  email: string;
-  password: string;
-}
-interface SignInResponse {
-  access_token: string;
-}
+import { axiosInstance } from '@/apis';
+import { AuthProps, SignInResponse } from '@/apis/auth';
 
 const signUpApi = async ({ email, password }: AuthProps) => {
   return await axiosInstance.post('/auth/signup', { email, password });
