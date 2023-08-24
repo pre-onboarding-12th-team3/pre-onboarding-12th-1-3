@@ -1,25 +1,5 @@
-import axiosInstance from './axiosInstance';
-
-interface AccessTokenType {
-  accessToken: string;
-}
-interface CreateTodoProps extends AccessTokenType {
-  todo: string;
-}
-interface UpdateTodoProps extends AccessTokenType {
-  id: string;
-  todo: string;
-  isCompleted: boolean;
-}
-interface DeleteTodoProps extends AccessTokenType {
-  id: string;
-}
-interface TodoResponse {
-  id: number;
-  todo: string;
-  isCompleted: boolean;
-  userId: number;
-}
+import axiosInstance from '../axiosInstance';
+import { CreateTodoProps, DeleteTodoProps, TodoResponse, UpdateTodoProps } from '@/apis/todo';
 
 const todoApi = {
   post: async ({ accessToken, todo }: CreateTodoProps) => {
