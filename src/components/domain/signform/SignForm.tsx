@@ -9,7 +9,7 @@ type Props = {
   type: FormType;
 };
 
-const Form = styled.section`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -29,7 +29,6 @@ const FORM_DETAILS = {
 
 const SignForm = ({ type }: Props) => {
   const [form, onInputChange, isValidForm, onSubmit] = useAuthForm(type);
-  console.log(isValidForm);
   return (
     <Form>
       <Input
