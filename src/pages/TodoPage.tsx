@@ -29,7 +29,7 @@ const TodoPage = () => {
   return (
     <> 
       <AddTodoForm setTodoList={setTodoList}/>
-      <TodoList items={todoList}/>
+      <TodoList items={todoList} setTodoList={setTodoList}/>
     </>
   );
 };

@@ -15,9 +15,10 @@ interface Props {
 }
 
 const Form = styled.form`
-display: flex;
-gap: 24px;
-width: 512px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    width: 512px;
 `;
 
 const AddTodoForm = ({ setTodoList }: Props) => {
@@ -26,11 +27,12 @@ const AddTodoForm = ({ setTodoList }: Props) => {
 
     const onSubmit = async (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
+        setTodo('');
         try {
             const newTodo = await createTodo(todo);
             setTodoList((prev: Todo[]) => [...prev, newTodo]);
         } catch (err) {
-            alert('새로운 투두를 만드는 중 오류가 발생했습니다');
+            alert('새로운 투두를 만드는 데 실패했습니다');
         }
     }
 
