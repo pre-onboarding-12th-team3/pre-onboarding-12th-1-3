@@ -1,5 +1,7 @@
+import SignForm from '@/components/domain/signform/SignForm';
+
 const SignInPage = () => {
-  return <div>SignInPage</div>;
+  return <SignForm type="signin" />;
 };
 
 export default SignInPage;
