@@ -12,10 +12,10 @@ import {axiosInstance} from '@/apis';
   const useAPI = () => {
     const [error, setError] = useState<string | null>(null);
     const [access_token, setAccess_token] = useState<string | null>(
-      localStorage.getItem("token")
+      localStorage.getItem("access_token")
     );
     useEffect(() => {
-      setAccess_token(localStorage.getItem("token"));
+      setAccess_token(localStorage.getItem("access_token"));
     }, []);
   
     const createTodo = async (todo: string): Promise<Todo> => {
