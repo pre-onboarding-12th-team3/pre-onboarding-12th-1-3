@@ -1,4 +1,4 @@
-import { TodoItem } from ".";
+import TodoItem from "./TodoItem";
 
 interface Todo {
     id: number;

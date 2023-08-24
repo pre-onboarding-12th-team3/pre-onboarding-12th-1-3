@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import useAPI from '@/apis/todo/todo';
+import AddTodoForm from '@/components/domain/todo/AddTodoForm';
 import TodoList from '@/components/domain/todo/TodoList';
 
 interface Todo {
@@ -19,14 +20,17 @@ const TodoPage = () => {
         const fetchedTodos = await getTodos();
         setTodoList(fetchedTodos);
       } catch (error) {
-        window.alert('할 일 목록을 불러오는 데 실패했습니다');
+        alert('할 일 목록을 불러오는 데 실패했습니다');
       }
     }
     fetchTodos();
   }, []);
 
   return (
-    <TodoList items={todoList}/>
+    <> 
+      <AddTodoForm setTodoList={setTodoList}/>
+      <TodoList items={todoList}/>
+    </>
   );
 };
 
