@@ -11,7 +11,7 @@ const ProtectedRoute = ({ element, path }: ProtectedRouteProps) => {
   const navigate = useNavigate();
 
   const isLoggedIn = async () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
 
     if (!token) {
       return false;
@@ -47,7 +47,7 @@ const ProtectedRoute = ({ element, path }: ProtectedRouteProps) => {
     };
 
     checkLoggedIn();
-  }, []);
+  }, [path]);
 
   return element;
 };
