@@ -1,6 +1,6 @@
-import { todoService } from '@/apis';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { todoApi } from '@/apis/todo';
 
 interface ProtectedRouteProps {
   element: JSX.Element;
@@ -18,7 +18,7 @@ const ProtectedRoute = ({ element, path }: ProtectedRouteProps) => {
     }
 
     try {
-      const res = await todoService.getTodos(token);
+      const res = await todoApi.get({ accessToken: token });
       return res.status !== 401;
     } catch (err) {
       return false;
