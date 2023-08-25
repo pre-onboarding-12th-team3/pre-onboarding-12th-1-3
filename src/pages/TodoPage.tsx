@@ -1,35 +1,18 @@
-import { useEffect, useState } from 'react';
-import useAPI from '@/apis/todo/todo';
-import AddTodoForm from '@/components/domain/todo/AddTodoForm';
-import TodoList from '@/components/domain/todo/TodoList';
-
-interface Todo {
-  id: number;
-  todo: string;
-  isCompleted: boolean;
-  userId: number;
-}
+import { useEffect } from 'react';
+import { AddTodoForm, TodoList } from '@/components/domain/todo';
+import { useTodoList } from '@/hooks';
 
 const TodoPage = () => {
-  const [todoList, setTodoList] = useState<Todo[]>([]); 
-  const {getTodos} = useAPI();
-  
+  const { todoList, getTodos, addTodo, removeTodo, modifyTodo } = useTodoList();
+
   useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const fetchedTodos = await getTodos();
-        setTodoList(fetchedTodos);
-      } catch (error) {
-        alert('할 일 목록을 불러오는 데 실패했습니다');
-      }
-    }
-    fetchTodos();
+    getTodos();
   }, []);
 
   return (
-    <> 
-      <AddTodoForm setTodoList={setTodoList}/>
-      <TodoList items={todoList} setTodoList={setTodoList}/>
+    <>
+      <AddTodoForm addTodo={addTodo} />
+      <TodoList items={todoList} removeTodo={removeTodo} modifyTodo={modifyTodo} />
     </>
   );
 };

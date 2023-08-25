@@ -1,58 +1,35 @@
-import useAPI from "@/apis/todo/todo";
-import TodoItem from "./TodoItem";
-
-interface Todo {
-    id: number;
-    todo: string;
-    isCompleted: boolean;
-    userId: number;
-}
+import styled from 'styled-components';
+import { Todo } from '@/apis/todo';
+import { TodoItem } from '@/components/domain/todo';
 
 interface Props {
-    items: Todo[],
-    setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
+  items: Todo[];
+  modifyTodo: ({ id, todo, isCompleted }: Omit<Todo, 'userId'>) => void;
+  removeTodo: (id: Todo['id']) => void;
 }
 
-const TodoList = ({ items, setTodoList }: Props) => {
-    const {updateTodo, deleteTodo} = useAPI();
-
-    const handleUpdate = async(
-        id: number,
-        todo: string,
-        isCompleted: boolean
-    ) => {
-        const prevTodo = items.find(todo => todo.id === id);
-        if(!prevTodo || prevTodo.todo === todo && prevTodo.isCompleted === isCompleted) return;
-        try {
-            await updateTodo(id, todo, isCompleted);
-            setTodoList(prev => 
-                prev.map(item => 
-                    item.id === id ? {
-                        ...item,
-                        todo,
-                        isCompleted
-                    } : item
-                )
-            )
-        } catch(err) {
-            alert('할 일을 수정하는 데 실패했습니다');
-        }
-    }
-
-    const handleDelete = async(id: number) => {
-        try {
-            await deleteTodo(id);
-            setTodoList(prev => prev.filter(item => item.id !== id));
-        } catch(err) {
-            alert('할 일을 삭제하는 데 실패했습니다');
-        }
-    }
-
-    return (
+const TodoList = ({ items, modifyTodo, removeTodo }: Props) => {
+  return (
+    <>
+      {items.length ? (
         <ul>
-            {items.map(item => <TodoItem key={item.id} item={item} onUpdate={handleUpdate} onDelete={handleDelete}/>)}
+          {items.map((item) => (
+            <TodoItem key={item.id} item={item} modifyTodo={modifyTodo} removeTodo={removeTodo} />
+          ))}
         </ul>
-    );
-}
+      ) : (
+        <Fallback>등록된 TODO가 없습니다.</Fallback>
+      )}
+    </>
+  );
+};
 
 export default TodoList;
+
+const Fallback = styled.div`
+  width: 512px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+`;
