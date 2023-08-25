@@ -1,12 +1,20 @@
-# Best Practice of Wanted Pre-onboarding Assignment
+# [Week 1] Best Practice of Wanted Pre-onboarding Assignment
 
 [원티드 프리온보딩 프론트엔드 인턴십 선발 과제](https://github.com/walking-sunset/selection-task)의 best practice를 제작한 프로젝트입니다.
 
-## Information
+## 💁‍♂️ 팀 소개
 
-- 배포 주소: https://pre-onboarding-12th-1-3.vercel.app
+| 성지현                                    | 신재일                                  | 윤혜영                                            | 조병현                                            | 채하은                                      | 홍성욱                                |
+| ----------------------------------------- | --------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------- | ------------------------------------- |
+| [@jhsung23](https://github.com/jhsung23/) | [@JaeIl00](https://github.com/JaeIl00/) | [@creamy-ocean](https://github.com/creamy-ocean/) | [@ChoByungHyun](https://github.com/ChoByungHyun/) | [@chaehaeun](https://github.com/chaehaeun/) | [@ukssss](https://github.com/ukssss/) |
+| 초기 프로젝트 셋팅                        | api 요청 및 응답 처리                   | todo CRUD                                         | 로그인                                            | 회원가입                                    | route 및 global layout                |
 
-### 프로젝트 실행 방법
+
+## 🔗 배포 링크
+
+배포 링크: https://pre-onboarding-12th-1-3.vercel.app
+
+## 🎬 프로젝트 실행 방법
 
 본 repository를 clone한 다음 프로젝트 폴더 경로에서 다음 명령어를 실행하면, 개발 환경에서의 React App을 실행하실 수 있습니다.
 
@@ -17,7 +25,7 @@ npm start
 
 브라우저가 자동으로 실행되지 않는다면 `http://localhost:3000`에 직접 접속해 주세요.
 
-### 기술 스택
+## 🛠️ 기술 스택
 
 <div>
   <img src="https://img.shields.io/badge/react-61DAFB?style=flat&logo=react&logoColor=white">
@@ -27,7 +35,7 @@ npm start
   <img src="https://img.shields.io/badge/react router-CA4245?style=flat&logo=react router&logoColor=white">
 </div>
 
-### 기능 상세
+## 🎖️ Best Practice 선정 이유
 
 ### **[Assignment 1] 유효성 검사**
 
@@ -35,6 +43,15 @@ npm start
 >   - 이메일 조건: `@` 포함
 >   - 비밀번호 조건: 8자 이상
 > - 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여해주세요
+
+|  이름  | 의견 |
+| ------ | --- |
+| 성지현 | - 이메일: includes(’@’), 비밀번호: length ≥ 8 <br/>- 인풋 컴포넌트의 onChange 이벤트 핸들링+유효성 검사, submit 기능을 useAuthForm 커스텀 훅을 만들어 로직 분리<br />- useAuthForm이 리턴하는 isValidForm 상태를 버튼 컴포넌트의 disabled 속성으로 줌 |
+| 신재일 | - 이메일 : includes(’@’) 사용<br />- 비밀번호: length >= 8 사용<br />- 버튼: debounce 사용해 유저가 입력 완료한 뒤 유효성 검사 및 disabled 변경<br />- 중복 로직 유틸 함수 생성, 같은 의미를 지닌 값들을 하나의 변수로 관리 |
+| 윤혜영 | - 이메일 : includes(’@’) 사용<br />- 비밀번호: length >= 8 사용<br />- 버튼 : handleEmail, handlePassword 함수에서 email, password의 유효성을 state로 상시 체크하여 버튼 disabled 속성 변경 |
+| 조병현 | - 이메일 : includes(’@’)사용<br />- 비밀번호 : length >= 8 사용<br />- 버튼 : email, password valid를 useState로 관리, 상시체크 후 버튼 비활성화 |
+| 채하은 | 페이지 컴포넌트에 로직을 많이 두고싶지 않아 커스텀훅과 폼, 인풋 컴포넌트에 로직 몰빵. 구조가 복잡해져 가독성이 나빠진 것에 아쉬움이 남음<br />-이메일 : includes(’@’)사용<br />-비밀번호 : length >= 8 사용<br />-useDebounce 커스텀훅을 활용해 일정 시간 내에 추가 입력이 없을 경우에만 유효성 검사 |
+| 홍성욱 | - 이메일 : includes(’@’) 사용<br />- 비밀번호 : length >= 8 사용<br />- 버튼 : useEffect 를 사용해서 email, password 의 값을 useState로 관리, 유효성 검사후 만족할 경우 버튼 활성화 |
 
 #### **Best Practice**
 
@@ -52,6 +69,10 @@ npm start
 > - 로그인 API는 로그인이 성공했을 시 Response Body에 JWT를 포함해서 응답합니다.
 > - 응답받은 JWT는 로컬 스토리지에 저장해주세요
 
+|  이름  | 의견 |
+| ------ | --- |
+|공통 의견 |- 로그인/회원가입 성공 시 useNavigate 사용하여 페이지 이동 <br />- 로그인 성공 시 localStorage 에 토큰 저장|
+
 #### **Best Practice**
 
 - 로그인/회원가입 성공 시 `useNavigate` 사용하여 페이지 이동
@@ -63,6 +84,15 @@ npm start
 > - 로그인 여부에 따른 리다이렉트 처리를 구현해주세요
 > - 로컬 스토리지에 토큰이 있는 상태로 `/signin` 또는 `/signup` 페이지에 접속한다면 `/todo` 경로로 리다이렉트 시켜주세요
 > - 로컬 스토리지에 토큰이 없는 상태로 `/todo`페이지에 접속한다면 `/signin` 경로로 리다이렉트 시켜주세요
+
+|  이름  | 의견 |
+| --------- | --- |
+| 성지현 | - /signin 및 /signup 주소에 접속했을 때 마운트되는 SignInPage 및 SignUpPage 컴포넌트에서 로컬스토리지 내 토큰 존재 여부를 검사함. <br />- 토큰이 존재하면 SignInPage 및 SignUpPage는 <Navigate to={’/todo’} /> 를 리턴. <br />- /todo 경로에 해당하는 TodoPage는 ProtectedRoute 컴포넌트로 감싸주어 토큰이 있으면 TodoPage로 이동하지 않고 SignInPage로 이동하도록 함. |
+| 신재일 | - 각 Page Root Component에서 useEffect로 local storage 토큰 유무 확인하고 useNavigate사용하여 리다이렉트 동작 |
+| 윤혜영 | - signin, signup, todo 파일에서 각각 useEffect로 토큰 확인 후 useNavigate로 리다이렉트 |
+| 조병현 | - 라우터 파일에서  useParams 를 의존하는 useEffect로 token존재 여부확인, path에 맞게 useNavigate로 리다이렉트 |
+| 채하은 | - Context API를 사용하여 인증 토큰을 관리하고, 각 페이지에서 useEffect를 활용하여 로그인 상태에 따라 리다이렉트를 구현. 과제에서는 구현하지 않았지만 protected route 기능 추가하고 싶음 |
+| 홍성욱 | - AuthContext 를 사용하여 인증 토큰 관리, 각 페이지에서 Context 를 통해 token 값을 조회하여 유/무에 따른 리다이렉트 구현 (useNavigate) |
 
 #### **Best practice**
 
@@ -79,22 +109,20 @@ npm start
 > - 목록에서는 TODO의 내용과 완료 여부가 표시되어야 합니다.
 > - TODO의 완료 여부는 `<input type="checkbox" />`를 통해 표현해주세요
 
+|  이름  | 의견 |
+| ------ | --- |
+| 성지현 | - /todo 경로에 접속했을 때, loader를 통해 투두 목록을 가져오는 요청 함수가 실행되도록 함.<br />- useLoaderData로 loader가 가져온 데이터를 TodoList 컴포넌트에 내려주어 화면에 렌더링. |
+| 신재일 | - Prop으로 전달받은 access-token이 있다면 Todo List를 서버에 요청 함 <br />- 별도 컴포넌트로 분리한 Todo List Item을 map 메서드 활용하여 Todo List 렌더링 |
+| 윤혜영 | - uesEffect 에서 getTodoList 함수를 이용해 API 데이터를 받아와 todos state로 관리<br />- todos state를 map으로 렌더링 |
+| 조병현 | - tode 랜더링 시 useEffect 로 api 데이터 요청 후 요청값을 useState 배열로 리스트 관리<br />- 관리된 todo배열을 map() 을 통해 랜더 |
+| 채하은 | - useEffect 로 페이지 마운트 시점에 서버에서 데이터를 받아와 todos 스테이트에 할당.  투두 배열을 map으로 렌더링 |
+| 홍성욱 | - useEffect 를 사용하여 token이 존재할 경우 setState를 통해 todos state에 값을 할당, 이를 map으로 투두들을 하나씩 렌더링 |
+
 #### **Best practice**
-
-- 데이터를 가져오는 함수는 axios 사용, api 폴더에서 관리
-- 최상위 todoPage 컴포넌트에서 `useEffect` 를 사용해 데이터 최초 get, `todoList` state 변수에 할당
-- 리스트 데이터는 추가 시간 기준 내림차순 적용
-- `map()` 을 사용하여 Item.tsx 컴포넌트를 뿌리고 props 전달
-- Item 컴포넌트는 받은 props 를 변수에 저장하고, `isCompleted` 속성을 checkbox `checked` 값에 할당
-
-  - todo 데이터가 필요한 곳마다 todo를 가져오기보다 최상위 컴포넌트에서 한 번만 받아서 전달해주는 것이 좋아 보여 최상위 컴포넌트에서 데이터 get
-  - 최신 todo가 가장 위에 보여지는 것이 좋아 보여 내림차순 적용
-
-- api 폴더에 있는 todoApi.get 함수를 통해 유저에게 등록된 TODO 데이터를 받아옵니다.
-- 투두리스트를 관리하기 위한 커스텀 훅 useTodoList을 만들었으며, 해당 훅이 리턴하는 getTodos 함수가 위 todoApi.get 함수를 포함하고 있습니다.
-- /todo에 접속하여 TodoPage 컴포넌트가 마운트되면 커스텀 훅 useTodoList를 호출합니다. 이어서useEffect 훅의 콜백으로 getTodos 함수를 실행합니다.
-- 요청에 성공하면 받은 데이터를 todoList state에 저장합니다.
-- todoList라는 상태에 저장된 데이터를 TodoList가 받아 각각의 TODO 데이터를 TodoItem 매핑하여 렌더링합니다.
+  
+- useEffect로 최상위 페이지(투두 페이지) 마운트 시점에 todo 데이터를 요청해 state로 관리
+- 데이터를 렌더링하는 부분은 페이지 컴포넌트에서 따로 분리
+- state를 투두 아이템 컴포넌트로 맵핑하여 렌더
 
 ### **[Assignment 6] 투두 리스트 추가**
 
@@ -102,37 +130,44 @@ npm start
 > - 추가 button을 클릭하면 입력 input의 내용이 새로운 TODO로 추가되도록 해주세요
 > - TODO를 추가 한 뒤 새로고침을 해도 추가한 TODO가 목록에 보여야 합니다
 
+|  이름  | 의견 |
+| ------ | --- |
+| 성지현 | - /todo 경로의 children으로 투두 추가 기능을 처리할 라우트 객체(path: /todo/create)를 추가 <br />- 새로운 투두를 입력할 수 있는 인풋을 fetcher.Form으로 감싸고, submit 시 /todo/create에 해당하는 action 함수를 실행 <br />- action 함수에서 투두 인풋의 밸류가 빈 문자열이라면 submit 처리를 중단(return null)하고, 빈 문자열이 아니라면 api 요청 <br />- action이 실행되면 TodoPage의 loader가 실행되어 투두 목록 업데이트 |
+| 신재일 | - 새롭게 추가된 Todo 내용은 useState로 관리되며 이를 서버로 전달하고 응답 성공 시 기존 Todo List에 응답 데이터 추가 |
+| 윤혜영 | - AddTodo 컴포넌트에 onCreate 함수를 전달해 해당 함수를 통해 API 요청 <br />- 새롭게 만들어진 todo를 todos state 마지막 요소로 업데이트 해줌 |
+| 조병현 | - input 내용 useState 로 저장 후 버튼 클릭 시 submit이벤트로 api요청, 해당 내용을 todo배열에 업데이트   |
+| 채하은 | - handleSubmit 함수로 post 요청. 화면 렌더링을 위해 setTodos로 투두 배열 업데이트. inputRef 로 투두 작성 완료시 인풋에 다시 포커스 가게함 |
+| 홍성욱 | - post 를 사용하여 todo 추가 기능 구현, setTodos를 통해 값 업데이트, 업데이트가 되면 input 값을 비워 새로운 값을 입력받을 수 있도록 구현 |
+
 #### **Best Practice**
 
-- POST 요청이 성공하면 `setTodoList`를 사용해 state 재할당
-- 실패하면 window.alert 띄우기
-- input 에서 Enter, 버튼 Click event 를 동일 handler 에서 처리
-- input value 빈 문자열일 때 추가버튼 disable 처리
-- 제출이 완료되면 input value 초기화
-  - input 태그에서 새로운 todo 입력 후 엔터 버튼을 클릭하는 경우도 고려해 submit button으로 공통 처리
-  - input value가 비어 있을 때 따로 얼럿을 띄워주기보다 추가 버튼이 disable 되는 것이 좋아 보여서 disabled 처리
-  - todo 제출이 완료되면 다른 새로운 todo를 입력하기 용이하도록 input value 초기화
-- AddTodoForm 컴포넌트는 TodoPage에서 호출한 커스텀 훅의 addTodo 함수를 prop으로 내려받으며, 추가할 TODO를 입력 받는 역할을 합니다.
-- 이때 TODO가 빈 문자열이 아니라면 추가 버튼이 활성화되고, 해당 버튼을 누르면 POST 요청을 전송합니다. 또한, 인풋은 초기화됩니다.
-- POST 요청에 성공하면, addTodo 함수에 응답 데이터를 파라미터로 넣어 호출하며 결과적으로 커스텀훅 내부에서 관리하는 todoList 상태가 업데이트됩니다.
-- todoList 상태가 업데이트되면서 TodoList 컴포넌트가 새로운 TODO 데이터로 리렌더링됩니다.
+- 추가 버튼 클릭 시 인풋의 value로 post 요청 전송
+- 인풋이 빈 문자열인 경우 전송하지 않음
+- 요청에 대한 성공 응답으로 받은 투두 데이터를 기존에 관리하던 state에 concatenating하여 렌더
+- 요청 실패 시 alert 창 띄우기 (`window.alert(err.response.data.message)`)
+  - 사용자에게 실시간 피드백을 제공하여 무엇이 잘못되었는지 알려주기 위해 사용
 
 ### **[Assignment 7&10] 투두 리스트와 체크박스 수정**
 
 > - TODO의 체크박스를 통해 완료 여부를 수정할 수 있도록 해주세요.
 > - 투두 리스트의 수정 기능을 구현해주세요
 
+|  이름  | 의견 |
+| ------ | --- |
+| 성지현 | - /todo 경로의 children으로 투두 수정 기능을 처리할 라우트 객체(path: /todo/update)를 추가 <br />- 체크박스 or 제출 버튼 클릭 시 /todo/update에 해당하는 action 함수 실행 <br />- action 함수에서 투두 인풋의 밸류가 빈 문자열이라면 submit 처리를 중단(return null)하고, 빈 문자열이 아니라면 api 요청 <br />- 체크박스는 optimistic update, 제출 버튼을 통한 업데이트는 loader 실행되어 업데이트 |
+| 신재일 | - debounce 활용하여 유저가 동작하는 마지막 체크박스 값을 서버로 전달 <br />- Todo 수정 서버 요청 성공 후 filter 메소드 활용하여 응답 값 id로 필터링하여 Todo List 기존 값과 교체 |
+| 윤혜영 | - TodoCard에 onUpdate 함수를 전달해 체크박스 값이 변경되거나 수정 완료 버튼을 클릭하면 API 요청 <br />- 수정 후 getTodoList 함수를 실행해 전체 todo 목록을 다시 불러옴 |
+| 조병현 | - 체크박스 클릭 시 api 요청 후 반영 <br />- 수정버튼 클릭 시 아이디와 내용을 인자로 전달하여 기존 내용 및 아이디를 불러오고 수정 후 제출하면 api 요청 후 반영 |
+| 채하은 | - 체크박스 클릭 또는 확인 버튼 클릭시 onUpdate(handleUpdate) 함수 호출 <br />- 수정하려는 투두의 id와 일치하는 투두를 todos 배열에서 찾고, 만약 수정하려는 내용이 변경되지 않았다면 함수 실행 종료 <br />- updateTodo api 함수 호출해 데이터 업데이트. 그리고 setTodos로 투두 변경 내용 업데이트 |
+| 홍성욱 | 체크박스 클릭시 useState를 통해 기존값과 반대값으로 변경, onUpdate 함수를 호출하여 id, todoText가 일치하는 투두의 체크박스 값을 변경 <br />- update를 사용, id, todoText를 동일, 체크여부에 따른 값 변경 |
+
 #### **Best Practice**
 
-- PUT 요청이 성공하면 이전값과 서버 응답 값을 교체하여 state 재할당
-- debounce 사용해 체크박스 마지막 값만 서버 요청
-- 수정하려는 투두의 밸류가 이전 밸류랑 변함이 없으면 데이터 요청 X
-- 요청 실패 시 window.alert 띄우기
-  - PUT 요청 성공 시 map 이용해 수정된 todo의 값만 교체하는 것이 비용을 줄이는 좋은 방법인 것 같아 해당 방식으로 진행
-  - 중복 클릭에 대한 서버 요청을 방지하는 것이 좋아 보여 체크박스 debounce 처리
-  - 수정하려는 todo의 값이 이전 값과 변함이 없으면 서버 api 요청을 따로 하지 않는 것이 좋아 보여 해당 방식으로 진행
-- TodoItem 컴포넌트는 TodoPage에서 호출한 커스텀 훅의 modifyTodo 함수를 prop으로 내려받습니다.
-- 이때 TODO가 빈 문자열이 아니라면 제출 버튼이 활성화되고, 제출 버튼 또는 체크박스를 클릭할 때 PUT 요청을 전송합니다.
+- 제출 버튼 클릭 또는 체크박스 클릭 시 PUT 요청 전송
+- 체크박스 클릭을 통한 PUT 요청은 단시간 다중 요청을 방지하기 위하여 디바운스 처리
+- 요청 성공 응답으로 받은 투두의의 id에 해당하는 데이터를 관리하고 있던 state에서 업데이트
+- 요청 실패 시 alert 창 띄우기 (`window.alert(err.response.data.message)`)
+  - 사용자에게 실시간 피드백을 제공하여 무엇이 잘못되었는지 알려주기 위해 사용
 
 ### **[Assignment 8&9] 투두리스트 삭제**
 
@@ -140,13 +175,23 @@ npm start
 > - 투두 리스트의 삭제 기능을 구현해주세요
 >   - 투두 리스트의 TODO 우측의 삭제버튼을 누르면 해당 아이템이 삭제되도록 해주세요
 
+|  이름  | 의견 |
+| ------ | --- |
+| 성지현 | - /todo 경로의 children으로 투두 삭제 기능을 처리할 라우트 객체(path: /todo/delete)를 추가 <br />- 삭제 버튼 클릭 시 /todo/delete에 해당하는 action 함수 실행 (api 삭제 요청) <br />- action이 실행되면 TodoPage의 loader 실행되어 업데이트 |
+| 신재일 | - 삭제 서버 요청 성공 시 filter 메소드 활용하여 기존 Todo List에서 삭제된 Todo id 필터링하고 리스트 업데이트 |
+| 윤혜영 | - TodoCard에 onDelete 함수를 전달해 삭제 버튼 클릭 시 API 요청 <br />- 삭제 후 getTodoList 함수를 실행해 전체 todo 목록을 다시 불러옴 |
+| 조병현 | - 삭제버튼 클릭 시 해당 todo 아이디값을 삭제 요청 후 filter 메소드를 통해 반영 |
+| 채하은 | - 삭제 원하는 투두의 id 값을 가져와 데이터 통신으로 삭제하고 filter 배열 메서드를 사용해 setTodos에 목록 반영 |
+| 홍성욱 | - 삭제버튼 클릭시 지정된 id값을 delete 방식으로 삭제후 filter 메소드를 사용해서 삭제된 값을 배열에서 제거 |
+
 #### **Best Practice**
 
-- DELETE 요청이 성공하면 이전값과 서버 응답 값을 교체하여 state 재할당
-- 요청 실패 시 window.alert 띄우기
-  - DELETE 요청 성공 시 filter를 이용해 삭제된 todo의 값만 제거하는 것이 비용을 줄이는 좋은 방법인 것 같아 해당 방식으로 진행
+- 삭제 버튼 클릭 시 DELETE 요청 전송
+- 요청 성공 시 삭제하려는 투두 아이디를 state에서 filter하여 상태 업데이트 및 렌더
+- 요청 실패 시 실패 시 alert 창 띄우기 (`window.alert(err.response.data.message)`)
+  - 사용자에게 실시간 피드백을 제공하여 무엇이 잘못되었는지 알려주기 위해 사용
 
-### 폴더 구조
+## 🗂️ 폴더 구조
 
 ```
 root
@@ -161,7 +206,7 @@ root
     └── apis/
 ```
 
-### 커밋 규칙 (commit convention)
+## 💾 커밋 규칙 (commit convention)
 
 - [Feat] 새로운 기능을 추가
 - [Fix] 버그 수정
@@ -178,9 +223,3 @@ root
 - [Remove] 파일을 삭제하는 작업만 수행한 경우
 - [Type] 타입 수정
 
-## 팀 소개
-
-| 성지현                                    | 신재일                                  | 윤혜영                                            | 조병현                                            | 채하은                                      | 홍성욱                                |
-| ----------------------------------------- | --------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------- | ------------------------------------- |
-| [@jhsung23](https://github.com/jhsung23/) | [@JaeIl00](https://github.com/JaeIl00/) | [@creamy-ocean](https://github.com/creamy-ocean/) | [@ChoByungHyun](https://github.com/ChoByungHyun/) | [@chaehaeun](https://github.com/chaehaeun/) | [@ukssss](https://github.com/ukssss/) |
-| 초기 프로젝트 셋팅                        | api 요청 및 응답 처리                   | todo CRUD                                         | 로그인                                            | 회원가입                                    | route 및 global layout                |
