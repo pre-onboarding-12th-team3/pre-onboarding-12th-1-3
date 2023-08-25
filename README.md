@@ -58,12 +58,24 @@ npm start
 
 <details>
   <summary>요구사항 및 Best Practice</summary>
+
+  ##### 요구사항 
+  
   <div markdown="1">
     
     - 회원가입 페이지에서 버튼을 클릭 시 회원가입을 진행하고 회원가입이 정상적으로 완료되었을 시 `/signin` 경로로 이동해주세요
     - 로그인 페이지에서 버튼을 클릭 시, 로그인을 진행하고 로그인이 정상적으로 완료되었을 시 `/todo` 경로로 이동해주세요
     - 로그인 API는 로그인이 성공했을 시 Response Body에 JWT를 포함해서 응답합니다.
     - 응답받은 JWT는 로컬 스토리지에 저장해주세요
+    
+  </div>
+
+  ##### Best Practice
+  <div markdown="1">
+    
+    - 로그인/회원가입 성공 시 `useNavigate` 사용하여 페이지 이동
+    - 로그인 실패 시 alert 창 띄우기 (`window.alert(err.response.data.message)`)
+      - 사용자에게 실시간 피드백을 제공하여 무엇이 잘못되었는지 알려주기 위해 사용
     
   </div>
 </details>
