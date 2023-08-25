@@ -35,8 +35,6 @@ npm start
   <summary>요구사항</summary>
   <div markdown="1">
 
-요구사항
-
     - 회원가입과 로그인 페이지에 이메일과 비밀번호의 유효성 검사기능을 구현해주세요
       - 이메일 조건: `@` 포함
       - 비밀번호 조건: 8자 이상
@@ -57,10 +55,7 @@ npm start
 #### [Assignment 2&3] 페이지 이동 및 JWT 관리
 
 <details>
-  <summary>요구사항 및 Best Practice</summary>
-
-##### 요구사항
-
+  <summary>요구사항</summary>
   <div markdown="1">
     
     - 회원가입 페이지에서 버튼을 클릭 시 회원가입을 진행하고 회원가입이 정상적으로 완료되었을 시 `/signin` 경로로 이동해주세요
@@ -80,7 +75,7 @@ npm start
 #### [Assignment 4] 리다이렉트
 
 <details>
-  <summary>요구사항 및 Best Practice</summary>
+  <summary>요구사항</summary>
   <div markdown="1">
     
     - 로그인 여부에 따른 리다이렉트 처리를 구현해주세요
@@ -93,7 +88,7 @@ npm start
 #### [Assignment 5] 투두 리스트 목록과 체크박스
 
 <details>
-  <summary>요구사항 및 Best Practice</summary>
+  <summary>요구사항</summary>
   <div markdown="1">
     
     - `/todo`경로에 접속하면 투두 리스트의 목록을 볼 수 있도록 해주세요
