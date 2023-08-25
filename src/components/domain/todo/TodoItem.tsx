@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { Input, Button, Checkbox, Label } from '@/components/common';
 import { Todo } from '@/apis/todo';
+import { useDebounceFunc } from '@/hooks';
 
 interface Props {
   item: Todo;
@@ -15,10 +16,14 @@ const TodoItem = ({ item, modifyTodo, removeTodo }: Props) => {
   const [isChecked, setIsChecked] = useState(isCompleted);
   const [newTodo, setNewTodo] = useState(todo);
 
+  const modifyTodoCheck = useDebounceFunc(
+    () => modifyTodo({ id, todo: newTodo, isCompleted: !isChecked }),
+    500,
+  );
+
   const handleCheckboxChange = () => {
-    // TODO debounce
     setIsChecked((prev) => !prev);
-    modifyTodo({ id, todo: newTodo, isCompleted: !isChecked });
+    modifyTodoCheck();
   };
 
   const handleEdit = () => {
