@@ -14,8 +14,14 @@ const Form = styled.form`
   flex-direction: column;
   gap: 24px;
   width: 512px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 24px;
 `;
-
+const Title = styled.h1`
+  font-size: 24px;
+  text-align: center;
+`;
 const FORM_DETAILS = {
   signin: {
     BUTTON_LABEL: '로그인',
@@ -31,6 +37,7 @@ const SignForm = ({ type }: Props) => {
   const [form, onInputChange, isValidForm, onSubmit] = useAuthForm(type);
   return (
     <Form>
+      <Title>{FORM_DETAILS[type].BUTTON_LABEL}</Title>
       <Input
         data-testid="email-input"
         type="email"
