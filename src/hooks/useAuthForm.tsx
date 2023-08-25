@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDebounce } from '@/hooks';
+import { useDebounceFunc } from '@/hooks';
 import { signInApi, signUpApi } from '@/apis/auth';
 import { isValidEmailInput, isValidPasswordInput } from '@/utils/auth/validate';
 import { useNavigate } from 'react-router-dom';
@@ -14,17 +14,21 @@ export type AuthPostRequest = {
 const useAuthForm = (type: string) => {
   const [form, setForm] = useState<FormInput>({ email: '', password: '' });
   const [isValidForm, setIsValidForm] = useState(false);
-  const debouncedEmail = useDebounce(form.email, 300);
-  const debouncedPassword = useDebounce(form.password, 300);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isValidEmailInput(debouncedEmail) && isValidPasswordInput(debouncedPassword)) {
+  const validateForm = () => {
+    if (isValidEmailInput(form.email) && isValidPasswordInput(form.password)) {
       setIsValidForm(true);
     } else {
       setIsValidForm(false);
     }
-  }, [debouncedEmail, debouncedPassword]);
+  };
+
+  const handleDebouncedValidation = useDebounceFunc(validateForm, 300);
+
+  useEffect(() => {
+    handleDebouncedValidation();
+  }, [form.email, form.password, handleDebouncedValidation]);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputName = e.target.name as keyof FormInput;
