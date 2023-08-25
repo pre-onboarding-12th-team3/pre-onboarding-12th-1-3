@@ -45,7 +45,7 @@ npm start
   </div>
 </details>
 
-#### Best Practice
+#### **Best Practice**
 
 - 공통 UI 컴포넌트 재사용
   - 생산성과 유지보수성 향상하기 위함
@@ -59,8 +59,8 @@ npm start
 <details>
   <summary>요구사항 및 Best Practice</summary>
 
-  ##### 요구사항 
-  
+##### 요구사항
+
   <div markdown="1">
     
     - 회원가입 페이지에서 버튼을 클릭 시 회원가입을 진행하고 회원가입이 정상적으로 완료되었을 시 `/signin` 경로로 이동해주세요
@@ -69,16 +69,13 @@ npm start
     - 응답받은 JWT는 로컬 스토리지에 저장해주세요
     
   </div>
-
-  ##### Best Practice
-  <div markdown="1">
-    
-    - 로그인/회원가입 성공 시 `useNavigate` 사용하여 페이지 이동
-    - 로그인 실패 시 alert 창 띄우기 (`window.alert(err.response.data.message)`)
-      - 사용자에게 실시간 피드백을 제공하여 무엇이 잘못되었는지 알려주기 위해 사용
-    
-  </div>
 </details>
+
+#### **Best Practice**
+
+- 로그인/회원가입 성공 시 `useNavigate` 사용하여 페이지 이동
+- 로그인 실패 시 alert 창 띄우기 (`window.alert(err.response.data.message)`)
+  - 사용자에게 실시간 피드백을 제공하여 무엇이 잘못되었는지 알려주기 위해 사용
 
 #### [Assignment 4] 리다이렉트
 
@@ -106,7 +103,7 @@ npm start
   </div>
 </details>
 
-#### Best practice
+#### **Best practice**
 
 - 데이터를 가져오는 함수는 axios 사용, api 폴더에서 관리
 - 최상위 todoPage 컴포넌트에서 `useEffect` 를 사용해 데이터 최초 get, `todoList` state 변수에 할당
@@ -136,7 +133,7 @@ npm start
   </div>
 </details>
 
-##### Best Practice
+##### **Best Practice**
 
 - POST 요청이 성공하면 `setTodoList`를 사용해 state 재할당
 - 실패하면 window.alert 띄우기
@@ -165,7 +162,7 @@ npm start
   </div>
 </details>
 
-##### Best Practice
+##### **Best Practice**
 
 - PUT 요청이 성공하면 이전값과 서버 응답 값을 교체하여 state 재할당
 - debounce 사용해 체크박스 마지막 값만 서버 요청
