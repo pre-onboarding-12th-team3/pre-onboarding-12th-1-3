@@ -66,6 +66,13 @@ npm start
 
 #### **Best practice**
 
+- `createBrowserRouter`로 라우터 작성
+- `ProtectedRoute` 컴포넌트에 토큰 검사하는 로직을 담고 그에 따른 라우팅 처리, 즉 각 페이지의 useEffect 로직을 컴포넌트화 했다고 생각
+- token의 유/무만 검사하는 방식이 아닌 token이 유효한 지를 검사하는 로직을 추가 (401 status, get 방식 사용)
+- `ProtectedRoute` 컴포넌트에서 token 값을 가져와 이를 유효성 검사를 진행, 유효한 토큰일 경우 리다이렉트를 구현하기 위해 만든 `navigateBasedOnAuth` 함수가 실행
+- `navigateBasedOnAuth` 함수를 제작해 path 경로와 유효한 token 을 갖고 있는지를 나타내는 isAuthenticated 변수를 사용해 경우에 따라 리다이렉트 구현
+- 리다이렉트 과정에서 이전 페이지의 값이 출력되었다가 사라지는 현상이 발생하여 `shouldRender` 함수에서 경우에 따라 null 혹은 element 를 출력하도록 하여 이를 방지
+
 ### **[Assignment 5] 투두 리스트 목록과 체크박스**
 
 > - `/todo`경로에 접속하면 투두 리스트의 목록을 볼 수 있도록 해주세요
