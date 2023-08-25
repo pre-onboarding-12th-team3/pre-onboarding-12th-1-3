@@ -9,4 +9,7 @@ module.exports = {
       options,
     },
   ],
+  eslint: {
+    enable: false,
+  },
 };
