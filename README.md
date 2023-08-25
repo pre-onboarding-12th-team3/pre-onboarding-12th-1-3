@@ -83,6 +83,16 @@ npm start
   </div>
 </details>
 
+##### Best practice
+- 데이터를 가져오는 함수는 axios 사용, api 폴더에서 관리
+- 최상위 todoPage 컴포넌트에서 `useEffect` 를 사용해 데이터 최초 get, `todoList` state 변수에 할당
+- 리스트 데이터는 추가 시간 기준 내림차순 적용
+- `map()` 을 사용하여 Item.tsx 컴포넌트를 뿌리고 props 전달
+- Item 컴포넌트는 받은 props 를 변수에 저장하고, `isCompleted` 속성을 checkbox `checked` 값에 할당
+  - todo 데이터가 필요한 곳마다 todo를 가져오기보다 최상위 컴포넌트에서 한 번만 받아서 전달해주는 것이 좋아 보여 최상위 컴포넌트에서 데이터 get
+  - 최신 todo가 가장 위에 보여지는 것이 좋아 보여 내림차순 적용
+
+
 - api 폴더에 있는 todoApi.get 함수를 통해 유저에게 등록된 TODO 데이터를 받아옵니다.
 - 투두리스트를 관리하기 위한 커스텀 훅 useTodoList을 만들었으며, 해당 훅이 리턴하는 getTodos 함수가 위 todoApi.get 함수를 포함하고 있습니다.
 - /todo에 접속하여 TodoPage 컴포넌트가 마운트되면 커스텀 훅 useTodoList를 호출합니다. 이어서useEffect 훅의 콜백으로 getTodos 함수를 실행합니다.
@@ -102,6 +112,17 @@ npm start
   </div>
 </details>
 
+
+##### Best Practice
+- POST 요청이 성공하면 `setTodoList`를 사용해 state 재할당
+- 실패하면 window.alert 띄우기
+- input 에서 Enter, 버튼 Click event 를 동일 handler 에서 처리
+- input value 빈 문자열일 때 추가버튼 disable 처리
+- 제출이 완료되면 input value 초기화
+  - input 태그에서 새로운 todo 입력 후 엔터 버튼을 클릭하는 경우도 고려해 submit button으로 공통 처리
+  - input value가 비어 있을 때 따로 얼럿을 띄워주기보다 추가 버튼이 disable 되는 것이 좋아 보여서 disabled 처리
+  - todo 제출이 완료되면 다른 새로운 todo를 입력하기 용이하도록 input value 초기화
+
 - AddTodoForm 컴포넌트는 TodoPage에서 호출한 커스텀 훅의 addTodo 함수를 prop으로 내려받으며, 추가할 TODO를 입력 받는 역할을 합니다.
 - 이때 TODO가 빈 문자열이 아니라면 추가 버튼이 활성화되고, 해당 버튼을 누르면 POST 요청을 전송합니다. 또한, 인풋은 초기화됩니다.
 - POST 요청에 성공하면, addTodo 함수에 응답 데이터를 파라미터로 넣어 호출하며 결과적으로 커스텀훅 내부에서 관리하는 todoList 상태가 업데이트됩니다.
@@ -119,6 +140,16 @@ npm start
   </div>
 </details>
 
+##### Best Practice
+- PUT 요청이 성공하면 이전값과 서버 응답 값을 교체하여 state 재할당
+- debounce 사용해 체크박스 마지막 값만 서버 요청
+- 수정하려는 투두의 밸류가 이전 밸류랑 변함이 없으면 데이터 요청 X
+- 요청 실패 시 window.alert 띄우기
+  - PUT 요청 성공 시 map을 이용해 수정된 todo의 값만 교체하는 것이 비용을 줄이는 좋은 방법인 것 같아 해당 방식으로 진행
+  - 중복 클릭에 대한 서버 요청을 방지하는 것이 좋아 보여 체크박스 debounce 처리 
+  - 수정하려는 todo의 값이 이전 값과 변함이 없으면 서버 api 요청을 따로 하지 않는 것이 좋아 보여 해당 방식으로 진행
+
+
 - TodoItem 컴포넌트는 TodoPage에서 호출한 커스텀 훅의 modifyTodo 함수를 prop으로 내려받습니다.
 - 이때 TODO가 빈 문자열이 아니라면 제출 버튼이 활성화되고, 제출 버튼 또는 체크박스를 클릭할 때 PUT 요청을 전송합니다.
 
@@ -135,6 +166,10 @@ npm start
   </div>
 </details>
 
+
+- DELETE 요청이 성공하면 이전값과 서버 응답 값을 교체하여 state 재할당
+- 요청 실패 시 window.alert 띄우기
+  - DELETE 요청 성공 시 filter를 이용해 삭제된 todo의 값만 제거하는 것이 비용을 줄이는 좋은 방법인 것 같아 해당 방식으로 진행
 
 ### 폴더 구조
 
