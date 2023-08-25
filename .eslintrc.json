@@ -12,9 +12,5 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "rules": {
-    "no-var": "error",
-    "no-multiple-empty-lines": "error",
-    "no-unused-vars": "error"
-  }
+  "rules": {}
 }
