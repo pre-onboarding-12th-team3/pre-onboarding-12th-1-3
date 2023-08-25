@@ -32,21 +32,31 @@ npm start
 #### [Assignment 1] 유효성 검사
 
 <details>
-  <summary>요구사항</summary>
+  <summary>요구사항 및 Best Practice</summary>
   <div markdown="1">
-    
+
+요구사항
+
     - 회원가입과 로그인 페이지에 이메일과 비밀번호의 유효성 검사기능을 구현해주세요
       - 이메일 조건: `@` 포함
       - 비밀번호 조건: 8자 이상
     - 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여해주세요
-    
+
+##### Best Practice
+
+    - 공통 UI 컴포넌트 재사용
+    - Input Value, Validation 상태 관리 커스텀훅 생성 및 재사용
+      - 중복되는 로그인과 회원가입 form이 불필요하게 나뉘는 것을 방지하기 위해 공통 UI컴포넌트 및 Input Value, Validation 상태 관리 커스텀훅 사용.
+    - debounce 사용하여 Validation 상태 업데이트
+      - 불필요한 Validation검사가 많아지는 것을 방지하기 위해 debounce 커스텀 훅 생성 및 재사용.
+
   </div>
 </details>
 
 #### [Assignment 2&3] 페이지 이동 및 JWT 관리
 
 <details>
-  <summary>요구사항</summary>
+  <summary>요구사항 및 Best Practice</summary>
   <div markdown="1">
     
     - 회원가입 페이지에서 버튼을 클릭 시 회원가입을 진행하고 회원가입이 정상적으로 완료되었을 시 `/signin` 경로로 이동해주세요
@@ -60,7 +70,7 @@ npm start
 #### [Assignment 4] 리다이렉트
 
 <details>
-  <summary>요구사항</summary>
+  <summary>요구사항 및 Best Practice</summary>
   <div markdown="1">
     
     - 로그인 여부에 따른 리다이렉트 처리를 구현해주세요
@@ -73,7 +83,7 @@ npm start
 #### [Assignment 5] 투두 리스트 목록과 체크박스
 
 <details>
-  <summary>요구사항</summary>
+  <summary>요구사항 및 Best Practice</summary>
   <div markdown="1">
     
     - `/todo`경로에 접속하면 투두 리스트의 목록을 볼 수 있도록 해주세요
@@ -92,7 +102,7 @@ npm start
 #### [Assignment 6] 투두 리스트 추가
 
 <details>
-  <summary>요구사항</summary>
+  <summary>요구사항 및 Best Practice</summary>
   <div markdown="1">
     
     - 리스트 페이지에 새로운 TODO를 입력할 수 있는 input과 추가 button을 만들어주세요
@@ -110,7 +120,7 @@ npm start
 #### [Assignment 7&10] 투두 리스트와 체크박스 수정
 
 <details>
-  <summary>요구사항</summary>
+  <summary>요구사항 및 Best Practice</summary>
   <div markdown="1">
     
     - TODO의 체크박스를 통해 완료 여부를 수정할 수 있도록 해주세요.
@@ -125,7 +135,7 @@ npm start
 #### [Assignment 8&9] 투두리스트 삭제
 
 <details>
-  <summary>요구사항</summary>
+  <summary>요구사항 및 Best Practice</summary>
   <div markdown="1">
     
     - TODO 우측에 수정버튼과 삭제 버튼을 만들어주세요
@@ -134,7 +144,6 @@ npm start
     
   </div>
 </details>
-
 
 ### 폴더 구조
 
