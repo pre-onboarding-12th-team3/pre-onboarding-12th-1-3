@@ -40,6 +40,7 @@ const useAuthForm = (type: string) => {
         const res = await signInApi(form);
         localStorage.setItem('access_token', res.data.access_token);
         navigate('/todo');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any | unknown) {
         alert(err.response.data.message);
         setIsValidForm(true);
@@ -50,6 +51,7 @@ const useAuthForm = (type: string) => {
         await signUpApi(form);
         alert('회원가입에 성공했습니다.');
         navigate('/signin');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any | unknown) {
         alert(err.response.data.message);
         setIsValidForm(true);
