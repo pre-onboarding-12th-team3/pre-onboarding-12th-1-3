@@ -7,6 +7,8 @@ export interface Todo {
   userId: number;
 }
 
+export interface GetTodoProps extends Token {}
+
 export interface CreateTodoProps extends Token, Pick<Todo, 'todo'> {}
 
 export interface UpdateTodoProps extends Token, Omit<Todo, 'userId'> {}

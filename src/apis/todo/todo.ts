@@ -1,5 +1,11 @@
-import axiosInstance from '../axiosInstance';
-import { CreateTodoProps, DeleteTodoProps, TodoResponse, UpdateTodoProps } from '@/apis/todo';
+import { axiosInstance } from '@/apis';
+import {
+  CreateTodoProps,
+  DeleteTodoProps,
+  GetTodoProps,
+  TodoResponse,
+  UpdateTodoProps,
+} from '@/apis/todo';
 
 const todoApi = {
   post: async ({ accessToken, todo }: CreateTodoProps) => {
@@ -13,7 +19,7 @@ const todoApi = {
       },
     );
   },
-  get: async ({ accessToken }: CreateTodoProps) => {
+  get: async ({ accessToken }: GetTodoProps) => {
     return await axiosInstance.get<TodoResponse[]>('/todos', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
