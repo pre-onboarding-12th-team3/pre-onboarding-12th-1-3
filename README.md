@@ -32,7 +32,7 @@ npm start
 #### [Assignment 1] 유효성 검사
 
 <details>
-  <summary>요구사항 및 Best Practice</summary>
+  <summary>요구사항</summary>
   <div markdown="1">
 
 요구사항
@@ -42,16 +42,17 @@ npm start
       - 비밀번호 조건: 8자 이상
     - 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여해주세요
 
-##### Best Practice
-
-    - 공통 UI 컴포넌트 재사용
-    - Input Value, Validation 상태 관리 커스텀훅 생성 및 재사용
-      - 중복되는 로그인과 회원가입 form이 불필요하게 나뉘는 것을 방지하기 위해 공통 UI컴포넌트 및 Input Value, Validation 상태 관리 커스텀훅 사용.
-    - debounce 사용하여 Validation 상태 업데이트
-      - 불필요한 Validation검사가 많아지는 것을 방지하기 위해 debounce 커스텀 훅 생성 및 재사용.
-
   </div>
 </details>
+
+#### Best Practice
+
+- 공통 UI 컴포넌트 재사용
+  - 생산성과 유지보수성 향상하기 위함
+- Input Value, Validation 상태 관리 커스텀훅 생성 및 재사용
+  - 중복되는 로그인과 회원가입 form이 불필요하게 나뉘는 것을 방지하기 위해 공통 UI컴포넌트 및 Input Value, Validation 상태 관리 커스텀훅 사용.
+- debounce 사용하여 Validation 상태 업데이트
+  - 불필요한 Validation검사가 많아지는 것을 방지하기 위해 debounce 커스텀 훅 생성 및 재사용.
 
 #### [Assignment 2&3] 페이지 이동 및 JWT 관리
 
@@ -93,7 +94,7 @@ npm start
   </div>
 </details>
 
-##### Best practice
+#### Best practice
 
 - 데이터를 가져오는 함수는 axios 사용, api 폴더에서 관리
 - 최상위 todoPage 컴포넌트에서 `useEffect` 를 사용해 데이터 최초 get, `todoList` state 변수에 할당
